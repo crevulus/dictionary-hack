@@ -9,6 +9,10 @@ const request = require('request');
 
 const port = process.env.PORT || 3001;
 
+app.get('/', (req, res) => {
+  console.log(res);
+});
+
 var options = {
   method: 'GET',
   url: 'https://wordsapiv1.p.rapidapi.com/words/hatchback',
