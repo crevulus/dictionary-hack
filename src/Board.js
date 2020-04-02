@@ -4,23 +4,17 @@ class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      entry: 'Search for something!',
       word: '',
-      pronunciation: '',
-      category: '',
-      definition: ''
     }
   }
 
-  componentDidMount() {
-    if (this.searchValue !== undefined) {
-      this.fetchData('computer')
-    }
-  }
-
+  // Registers search term on each key press
   handleChange = (event) => {
     this.setState({ searchValue: event.target.value });
   }
 
+  // Resets search box
   handleSubmit = (event) => {
     event.preventDefault();
     this.setState({
@@ -28,65 +22,49 @@ class Board extends Component {
     });
   }
 
+  // Calls API directly
   fetchData = (searchValue) => {
+    // store lexical content at time of creation
     const that = this;
-    fetch(`http://localhost:3001/${this.state.searchValue}`, {
-      method: 'GET',
+    fetch(`https://wordsapiv1.p.rapidapi.com/words/${this.state.searchValue}`, {
+      method: "GET",
+      withCredentials: true,
       headers: {
-        Accept: 'application/json',
-      },
+        'x-rapidapi-key': 'a2c92537d6mshed3836357d1a824p120053jsn7c815bcc2e2d'
+      }
     })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then(resp => resp.json())
       .then(function(data) {
+        that.setState({ entry: '' });
         that.setState({ word: data.word });
         that.setState({ pronunciation: data.pronunciation.all });
         that.setState({ category: data.results[0].partOfSpeech });
         that.setState({ definition: data.results[0].definition });
+        // data.results[0].synonyms.forEach((word) => that.setState({ synonyms: word })); // can't figure out how to set state with both values
         console.log(data);
       })
       .catch(function(error) {
         console.log(error);
       });
-    }
-
-    // fetchData = (searchValue) => {
-    //   const that = this;
-    //   fetch(`https://wordsapiv1.p.rapidapi.com/words/${this.state.searchValue}`, {
-    //     method: "GET",
-    //     withCredentials: true,
-    //     headers: {
-    //       'x-rapidapi-key': 'a2c92537d6mshed3836357d1a824p120053jsn7c815bcc2e2d'
-    //     }
-    //   })
-    //     .then(resp => resp.json())
-    //     .then(function(data) {
-    //       that.setState({ word: data.word });
-    //       that.setState({ pronunciation: data.pronunciation.all });
-    //       that.setState({ category: data.results[0].partOfSpeech });
-    //       that.setState({ definition: data.results[0].definition });
-    //       console.log(data);
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
-    //   }
+  }
 
   render() {
     return (
       <div className="board-div">
         <form onSubmit={this.handleSubmit}>
-        <label>
-          Search for a word: <br/>
-          <input type="text" label="Search" value={this.state.searchValue} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Search" onClick={this.fetchData} />
-      </form>
+          <label className="search-text">
+            Search for a word: <br/>
+            <input type="text" label="Search" value={this.state.searchValue} onChange={this.handleChange} />
+          </label>
+          <input className="submit" type="submit" value="Search" onClick={this.fetchData} />
+        </form>
         <div className="data">
-        <p className="word">{this.state.word}</p>
-        <p className="pronunciation">{this.state.pronunciation}</p>
-        <p className="category">{this.state.category}</p>
-        <p className="definition">{this.state.definition}</p>
+          <p className="entry">{this.state.entry}</p>
+          <p className="word">{this.state.word}</p>
+          <p className="pronunciation">{this.state.pronunciation}</p>
+          <p className="category">{this.state.category}</p>
+          <p className="definition">{this.state.definition}</p>
+          <p className="synonyms">{this.state.synonyms}</p>
         </div>
       </div>
     );
@@ -95,7 +73,11 @@ class Board extends Component {
 
 export default Board;
 
-{/* <p className="word">{this.state.word}</p>
-        <p className="pronunciation">{this.state.pronunciation}</p>
-        <p className="category">{this.state.category}</p>
-        <p className="definition">{this.state.definition}</p> */}
+// fetchData = (searchValue) => {
+//   const that = this;
+//   fetch(`http://localhost:3001/${this.state.searchValue}`, {
+//     method: 'GET',
+//     headers: {
+//       Accept: 'application/json',
+//     },
+//   })
