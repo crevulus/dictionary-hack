@@ -1,20 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import React, { Component } from 'react';
-
-class componentName extends Component {
-  constructor(props) {
-    super(props);
-    
-  }
-
-  render() {
-    return (
-      <div>
-        
-      </div>
-    );
-  }
+function Title () {
+  return (
+    <div>
+      <h1>Word of the Day</h1>
+    </div>
+  );
 }
 
-export default componentName;
+export default Title;

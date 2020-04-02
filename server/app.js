@@ -1,17 +1,10 @@
 const express = require('express');
 const app = express();
-// const routes = require('./routes');
-// const https = require('https');
-// const unirest = require('unirest');
 const EventEmitter = require('events')
 const eventEmitter = new EventEmitter();
 const request = require('request');
 
 const port = process.env.PORT || 3001;
-
-app.get('/', (req, res) => {
-  console.log(res);
-});
 
 var options = {
   method: 'GET',
@@ -21,15 +14,18 @@ var options = {
   }
 };
 
-eventEmitter.on('start', () => {
-  request(options, (error, response, body) => {
-    if (error) throw new Error(error);
-    console.log(body);
-  })
-  }
-);
+app.get('/', function(req, res) {
+  eventEmitter.on('start', () => {
+    request(options, (error, response, body) => {
+      if (error) throw new Error(error);
+      console.log(body);
+      res.send(body);
+    });
+  });
+  res.end();
+});
 
-eventEmitter.emit('start')
+eventEmitter.emit('start');
 
 app.listen(port, function () {
   console.log('Express server is listening on port', port);
