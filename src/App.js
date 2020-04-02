@@ -1,8 +1,6 @@
 import React from 'react';
 import Title from './Title'
 import Board from './Board';
-import Search from './Search';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends React.Component {
@@ -13,17 +11,15 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {  
-    fetch('http://localhost:3001', {mode: 'no-cors'})
-      .then(text => console.log(text));
-  }
+  // componentDidMount() {  
+    
+  // }
 
   render() {
     return (
       <div className="App">
         <Title />
         <Board />
-        <Search />
       </div>
     );
 
