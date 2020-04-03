@@ -27,10 +27,11 @@ class Dictionary extends Component {
   }
 
   // Calls API directly
-  fetchData(searchValue) {
+  fetchData() {
     // store lexical content at time of creation
     const that = this;
-    fetch(`https://wordsapiv1.p.rapidapi.com/words/${this.state.searchValue}`, {
+    const { searchValue } = that.state;
+    fetch(`https://wordsapiv1.p.rapidapi.com/words/${searchValue}`, {
       method: 'GET',
       withCredentials: true,
       headers: {
@@ -53,23 +54,30 @@ class Dictionary extends Component {
   }
 
   render() {
+    const {
+      entry,
+      word,
+      pronunciation,
+      category,
+      definition,
+      searchValue,
+    } = this.state;
     return (
       <div className="dictionary-div">
         <form onSubmit={this.handleSubmit}>
           <label className="search-text">
             Search for a word:
             <br />
-            <input type="text" label="Search" value={this.state.searchValue} onChange={this.handleChange} />
+            <input type="text" label="Search" value={searchValue} onChange={this.handleChange} />
           </label>
           <input className="submit" type="submit" value="Search" onClick={this.fetchData} />
         </form>
         <div className="data">
-          <p className="entry">{this.state.entry}</p>
-          <p className="word">{this.state.word}</p>
-          <p className="pronunciation">{this.state.pronunciation}</p>
-          <p className="category">{this.state.category}</p>
-          <p className="definition">{this.state.definition}</p>
-          <p className="synonyms">{this.state.synonyms}</p>
+          <p className="entry">{entry}</p>
+          <p className="word">{word}</p>
+          <p className="pronunciation">{pronunciation}</p>
+          <p className="category">{category}</p>
+          <p className="definition">{definition}</p>
         </div>
       </div>
     );
@@ -80,9 +88,12 @@ export default Dictionary;
 
 // fetchData = (searchValue) => {
 //   const that = this;
-//   fetch(`http://localhost:3001/${this.state.searchValue}`, {
+//   fetch(`http://localhost:3001/`, {
 //     method: 'GET',
 //     headers: {
 //       Accept: 'application/json',
 //     },
 //   })
+//   .then((resp) => resp.json())
+//   .then((data) => console.log(data));
+// }
