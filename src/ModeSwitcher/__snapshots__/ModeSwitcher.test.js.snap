@@ -5,7 +5,7 @@ exports[`matches snapshot 1`] = `
   <p
     className="thesaurus-text"
   >
-    Thesaurus Mode: 
+    Thesaurus Mode:
     <div
       className="switch"
       style={
@@ -211,9 +211,6 @@ exports[`matches snapshot 1`] = `
       />
       <p
         className="definition"
-      />
-      <p
-        className="synonyms"
       />
     </div>
   </div>

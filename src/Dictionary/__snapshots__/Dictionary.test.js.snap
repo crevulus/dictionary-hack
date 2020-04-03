@@ -47,9 +47,6 @@ exports[`matches snapshot 1`] = `
     <p
       className="definition"
     />
-    <p
-      className="synonyms"
-    />
   </div>
 </div>
 `;

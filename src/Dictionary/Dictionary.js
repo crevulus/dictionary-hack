@@ -53,6 +53,17 @@ class Dictionary extends Component {
       });
   }
 
+  // fetchData = (searchValue) => {
+  //   fetch(`http://localhost:3001/`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //     },
+  //   })
+  //   .then((resp) => resp.json())
+  //   .then((data) => console.log(data));
+  // }
+
   render() {
     const {
       entry,
@@ -85,15 +96,3 @@ class Dictionary extends Component {
 }
 
 export default Dictionary;
-
-// fetchData = (searchValue) => {
-//   const that = this;
-//   fetch(`http://localhost:3001/`, {
-//     method: 'GET',
-//     headers: {
-//       Accept: 'application/json',
-//     },
-//   })
-//   .then((resp) => resp.json())
-//   .then((data) => console.log(data));
-// }

@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Title />
       <ModeSwitcher />
-      {/* <iframe className="offer-wall" title="test-title" src="https://viral782.com/list/396727" height="300px" frameborder="0"></iframe> */}
+      <iframe className="offer-wall" title="test-title" src="https://viral782.com/list/396727" height="300px" frameborder="0"></iframe>
     </div>
   );
 }
