@@ -15,7 +15,7 @@ body {
   color: white;
 }
 
-.data {
+.dictionary-div .data {
   width: 70%;
   margin: auto;
   margin-top: 10px;
@@ -23,6 +23,22 @@ body {
   border-radius: 5px;
   background-color: white;
   box-shadow: 2px 2px 2px #555;
+}
+
+.thesaurus-div .data {
+  width: 70%;
+  margin: auto;
+  margin-top: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  box-shadow: 2px 2px 2px #555;
+}
+
+.thesaurus-text {
+  font-weight: 800;
+  color: white;
 }
 
 .entry {
@@ -36,7 +52,7 @@ body {
 }
 
 .pronunciation {
-  font-weight: 800;
+  
 }
 
 .category {

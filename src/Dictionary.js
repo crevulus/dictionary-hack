@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Board extends Component {
+class Dictionary extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,6 +33,7 @@ class Board extends Component {
         'x-rapidapi-key': 'a2c92537d6mshed3836357d1a824p120053jsn7c815bcc2e2d'
       }
     })
+    // Append to virtual DOM
       .then(resp => resp.json())
       .then(function(data) {
         that.setState({ entry: '' });
@@ -40,7 +41,6 @@ class Board extends Component {
         that.setState({ pronunciation: data.pronunciation.all });
         that.setState({ category: data.results[0].partOfSpeech });
         that.setState({ definition: data.results[0].definition });
-        // data.results[0].synonyms.forEach((word) => that.setState({ synonyms: word })); // can't figure out how to set state with both values
         console.log(data);
       })
       .catch(function(error) {
@@ -50,7 +50,7 @@ class Board extends Component {
 
   render() {
     return (
-      <div className="board-div">
+      <div className="dictionary-div">
         <form onSubmit={this.handleSubmit}>
           <label className="search-text">
             Search for a word: <br/>
@@ -71,7 +71,7 @@ class Board extends Component {
   }
 }
 
-export default Board;
+export default Dictionary;
 
 // fetchData = (searchValue) => {
 //   const that = this;
