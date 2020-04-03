@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="thesaurus-div"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <label
+      className="search-text"
+    >
+      Search for a word: 
+      <br />
+      <input
+        label="Search"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <input
+      className="submit"
+      onClick={[Function]}
+      type="submit"
+      value="Search"
+    />
+  </form>
+  <div
+    className="data"
+  >
+    <p
+      className="entry"
+    >
+      Search for something!
+    </p>
+    <p
+      className="word"
+    >
+      
+    </p>
+    <p
+      className="synonyms"
+    />
+  </div>
+</div>
+`;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Dictionary.css';
 
 class Dictionary extends Component {
   constructor(props) {
@@ -6,36 +7,39 @@ class Dictionary extends Component {
     this.state = {
       entry: 'Search for something!',
       word: '',
-    }
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.fetchData = this.fetchData.bind(this);
   }
 
   // Registers search term on each key press
-  handleChange = (event) => {
+  handleChange(event) {
     this.setState({ searchValue: event.target.value });
   }
 
   // Resets search box
-  handleSubmit = (event) => {
+  handleSubmit(event) {
     event.preventDefault();
     this.setState({
-      searchValue: ''
+      searchValue: '',
     });
   }
 
   // Calls API directly
-  fetchData = (searchValue) => {
+  fetchData(searchValue) {
     // store lexical content at time of creation
     const that = this;
     fetch(`https://wordsapiv1.p.rapidapi.com/words/${this.state.searchValue}`, {
-      method: "GET",
+      method: 'GET',
       withCredentials: true,
       headers: {
-        'x-rapidapi-key': 'a2c92537d6mshed3836357d1a824p120053jsn7c815bcc2e2d'
-      }
+        'x-rapidapi-key': 'a2c92537d6mshed3836357d1a824p120053jsn7c815bcc2e2d',
+      },
     })
     // Append to virtual DOM
-      .then(resp => resp.json())
-      .then(function(data) {
+      .then((resp) => resp.json())
+      .then((data) => {
         that.setState({ entry: '' });
         that.setState({ word: data.word });
         that.setState({ pronunciation: data.pronunciation.all });
@@ -43,7 +47,7 @@ class Dictionary extends Component {
         that.setState({ definition: data.results[0].definition });
         console.log(data);
       })
-      .catch(function(error) {
+      .catch((error) => {
         console.log(error);
       });
   }
@@ -53,7 +57,8 @@ class Dictionary extends Component {
       <div className="dictionary-div">
         <form onSubmit={this.handleSubmit}>
           <label className="search-text">
-            Search for a word: <br/>
+            Search for a word:
+            <br />
             <input type="text" label="Search" value={this.state.searchValue} onChange={this.handleChange} />
           </label>
           <input className="submit" type="submit" value="Search" onClick={this.fetchData} />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Thesaurus.css'
 
 class Thesaurus extends Component {
   constructor(props) {

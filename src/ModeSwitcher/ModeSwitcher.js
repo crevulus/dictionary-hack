@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Dictionary from './Dictionary';
+import Dictionary from '../Dictionary/Dictionary';
 import Switch from 'react-switch'
-import Thesaurus from './Thesaurus';
+import Thesaurus from '../Thesaurus/Thesaurus';
+import './ModeSwitcher.css'
 
 class ModeSwitcher extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class ModeSwitcher extends Component {
           className="switch"
           onChange={this.handleChange}
           checked={this.state.checked}
+          onColor="#000"
           /></p>
         {this.state.checked ? <Thesaurus /> : <Dictionary />}
       </div>
